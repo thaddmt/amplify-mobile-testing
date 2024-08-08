@@ -1,9 +1,6 @@
 version: 1
 backend:
   phases:
-    preBuild:
-      commands:
-        - node setup-environment.js
     build:
       commands:
         - amplifyPush --simple
