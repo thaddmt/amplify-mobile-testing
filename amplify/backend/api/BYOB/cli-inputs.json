@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "paths": {
+    "/liveness/create": {
+      "name": "/liveness/create",
+      "lambdaFunction": "livenessenvironmentb20a0fc6",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/liveness/{sessionId}": {
+      "name": "/liveness/{sessionId}",
+      "lambdaFunction": "livenessenvironment3477af97",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/livenessnolight/{sessionId}": {
+      "name": "/livenessnolight/{sessionId}",
+      "lambdaFunction": "livenessenvironment09873267",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/livenessnolight/create": {
+      "name": "/livenessnolight/create",
+      "lambdaFunction": "livenessenvironment6105cfac",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
