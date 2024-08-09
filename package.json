@@ -12,8 +12,8 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "0.0.0-liveness-alpha-01472b5-20240601010139",
-    "@aws-amplify/ui-react-liveness": "0.0.0-liveness-alpha-01472b5-20240601010139",
+    "@aws-amplify/ui-react": "liveness-omega",
+    "@aws-amplify/ui-react-liveness": "liveness-omega",
     "@aws-sdk/credential-providers": "^3.363.0",
     "@emotion/react": "^11.10.4",
     "@emotion/server": "^11.10.0",
