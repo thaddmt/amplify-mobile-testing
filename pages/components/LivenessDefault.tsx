@@ -139,7 +139,7 @@ export default function LivenessDefault({ disableStartScreen = false }) {
                   ...(credentialProvider ? { credentialProvider } : {}),
                   endpointOverride:
                     'wss://streaming-rekognition-gamma.us-east-1.amazonaws.com',
-                  mobileCamera={camera},
+                  mobileCamera:camera,
                 }}
               />
             ) : null}
