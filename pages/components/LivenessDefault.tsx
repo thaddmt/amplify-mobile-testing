@@ -21,7 +21,7 @@ const SUPPORTED_CHALLENGES = [
   'FaceMovementAndLightChallenge',
   'FaceMovementChallenge',
 ];
-const SUPPORTED_CAMERAS = ['USER', 'ENVIRONMENT'];
+const SUPPORTED_CAMERAS: mobileCameraType = ['USER', 'ENVIRONMENT'];
 
 export default function LivenessDefault({ disableStartScreen = false }) {
   const [challengeType, setChallengeType] =
