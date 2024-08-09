@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { View, Flex, Loader, Text } from '@aws-amplify/ui-react';
-import { FaceLivenessDetectorCore, mobileCameraType } from '@aws-amplify/ui-react-liveness';
+import {
+  FaceLivenessDetectorCore,
+  mobileCameraType,
+} from '@aws-amplify/ui-react-liveness';
 import { useLiveness } from '../hooks/useLiveness';
 import { SessionIdAlert } from './SessionIdAlert';
 import { ConfigSelect } from './ConfigSelect';
@@ -21,13 +24,11 @@ const SUPPORTED_CHALLENGES = [
   'FaceMovementAndLightChallenge',
   'FaceMovementChallenge',
 ];
-const SUPPORTED_CAMERAS: mobileCameraType[] = ['USER', 'ENVIRONMENT'];
+const SUPPORTED_CAMERAS = ['USER', 'ENVIRONMENT', 'DEFAULT'];
 
 export default function LivenessDefault({ disableStartScreen = false }) {
-  const [challengeType, setChallengeType] =
-    useState<(typeof SUPPORTED_CHALLENGES)[number]>(DEFAULT_CHALLENGE);
-  const [camera, setCamera] =
-    useState<mobileCameraType>('USER');
+  const [challengeType, setChallengeType] = useState(DEFAULT_CHALLENGE);
+  const [camera, setCamera] = useState('DEFAULT');
 
   const {
     getLivenessResponse,
@@ -103,13 +104,13 @@ export default function LivenessDefault({ disableStartScreen = false }) {
         </Flex>
       ) : (
         <Flex direction="column" position="relative" style={{ zIndex: '2' }}>
-          <ConfigSelect<(typeof SUPPORTED_CHALLENGES)[number]>
+          <ConfigSelect
             name="Challenge"
             currentSelection={challengeType}
             onChange={setChallengeType}
             options={SUPPORTED_CHALLENGES}
           />
-          <ConfigSelect<mobileCameraType>
+          <ConfigSelect
             name="Camera"
             currentSelection={camera}
             onChange={setCamera}
@@ -139,7 +140,10 @@ export default function LivenessDefault({ disableStartScreen = false }) {
                   ...(credentialProvider ? { credentialProvider } : {}),
                   endpointOverride:
                     'wss://streaming-rekognition-gamma.us-east-1.amazonaws.com',
-                  mobileCamera:camera,
+                  mobileCamera:
+                    camera === 'DEFAULT'
+                      ? undefined
+                      : (camera as mobileCameraType),
                 }}
               />
             ) : null}
