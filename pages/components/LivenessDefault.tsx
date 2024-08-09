@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View, Flex, Loader, Text } from '@aws-amplify/ui-react';
-import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness';
+import { FaceLivenessDetectorCore, mobileCameraType } from '@aws-amplify/ui-react-liveness';
 import { useLiveness } from '../hooks/useLiveness';
 import { SessionIdAlert } from './SessionIdAlert';
 import { ConfigSelect } from './ConfigSelect';
@@ -27,7 +27,7 @@ export default function LivenessDefault({ disableStartScreen = false }) {
   const [challengeType, setChallengeType] =
     useState<(typeof SUPPORTED_CHALLENGES)[number]>(DEFAULT_CHALLENGE);
   const [camera, setCamera] =
-    useState<(typeof SUPPORTED_CAMERAS)[number]>('USER');
+    useState<mobileCameraType>('USER');
 
   const {
     getLivenessResponse,
@@ -109,7 +109,7 @@ export default function LivenessDefault({ disableStartScreen = false }) {
             onChange={setChallengeType}
             options={SUPPORTED_CHALLENGES}
           />
-          <ConfigSelect<(typeof SUPPORTED_CAMERAS)[number]>
+          <ConfigSelect<mobileCameraType>
             name="Camera"
             currentSelection={camera}
             onChange={setCamera}
