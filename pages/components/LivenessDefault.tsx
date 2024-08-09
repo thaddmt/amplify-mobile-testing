@@ -3,7 +3,7 @@ import { View, Flex, Loader, Text } from '@aws-amplify/ui-react';
 import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness';
 import { useLiveness } from '../hooks/useLiveness';
 import { SessionIdAlert } from './SessionIdAlert';
-import { ChallengeSelection } from './ChallengeSelection';
+import { ConfigSelect } from './ConfigSelect';
 import LivenessInlineResults from './LivenessInlineResults';
 import { LIVENESS_COMPONENT, recordAnalyticsEvent } from '../utils/analytics';
 import { fetchAuthSession } from 'aws-amplify/auth';
@@ -21,9 +21,13 @@ const SUPPORTED_CHALLENGES = [
   'FaceMovementAndLightChallenge',
   'FaceMovementChallenge',
 ];
+const SUPPORTED_CAMERAS = ['USER', 'ENVIRONMENT'];
 
 export default function LivenessDefault({ disableStartScreen = false }) {
-  const [challengeType, setChallengeType] = useState(DEFAULT_CHALLENGE);
+  const [challengeType, setChallengeType] =
+    useState<(typeof SUPPORTED_CHALLENGES)[number]>(DEFAULT_CHALLENGE);
+  const [camera, setCamera] =
+    useState<(typeof SUPPORTED_CAMERAS)[number]>('USER');
 
   const {
     getLivenessResponse,
@@ -37,7 +41,6 @@ export default function LivenessDefault({ disableStartScreen = false }) {
   } = useLiveness(challengeType);
 
   const [error, setError] = useState(undefined);
-
 
   if (createLivenessSessionApiError) {
     return <div>Some error occured...</div>;
@@ -100,10 +103,17 @@ export default function LivenessDefault({ disableStartScreen = false }) {
         </Flex>
       ) : (
         <Flex direction="column" position="relative" style={{ zIndex: '2' }}>
-          <ChallengeSelection
-            selectedChallenge={challengeType}
+          <ConfigSelect<(typeof SUPPORTED_CHALLENGES)[number]>
+            name="Challenge"
+            currentSelection={challengeType}
             onChange={setChallengeType}
-            challengeList={SUPPORTED_CHALLENGES}
+            options={SUPPORTED_CHALLENGES}
+          />
+          <ConfigSelect<(typeof SUPPORTED_CAMERAS)[number]>
+            name="Camera"
+            currentSelection={camera}
+            onChange={setCamera}
+            options={SUPPORTED_CAMERAS}
           />
           <SessionIdAlert
             sessionId={createLivenessSessionApiData['sessionId']}
