@@ -38,7 +38,7 @@ export default function LivenessDefault({ disableStartScreen = false }) {
     stopLiveness,
     isResultModalOpen,
     handleResultsModalClose,
-  } = useLiveness(challengeType);
+  } = useLiveness(challengeType, camera);
 
   const [error, setError] = useState(undefined);
 
@@ -139,6 +139,7 @@ export default function LivenessDefault({ disableStartScreen = false }) {
                   ...(credentialProvider ? { credentialProvider } : {}),
                   endpointOverride:
                     'wss://streaming-rekognition-gamma.us-east-1.amazonaws.com',
+                  mobileCamera={camera},
                 }}
               />
             ) : null}

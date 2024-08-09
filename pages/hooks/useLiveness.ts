@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { post, get } from 'aws-amplify/api';
 import useSWR from 'swr';
 
-export function useLiveness(challengeType: string = 'FaceMovementChallenge') {
+export function useLiveness(
+  challengeType: string = 'FaceMovementChallenge',
+  camera: string = 'USER'
+) {
   const [isLivenessActive, setLivenessActive] = useState(false);
   const [getLivenessResponse, setGetLivenessResponse] = useState(null);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
 
   useEffect(() => {
     mutate('CreateStreamingLivenessSession');
-  }, [challengeType]);
+  }, [challengeType, camera]);
 
   const {
     data: createLivenessSessionApiData,
