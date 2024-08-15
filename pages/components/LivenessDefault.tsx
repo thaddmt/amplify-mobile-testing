@@ -98,6 +98,7 @@ export default function LivenessDefault({ disableStartScreen = false }) {
 
   return (
     <View maxWidth="640px" margin="0 auto">
+      <button style={{ zIndex: 99, position: 'absolute' }} onClick={onUserCancel}>Retry</button>
       {createLivenessSessionApiLoading ? (
         <Flex justifyContent="center" alignItems="center">
           <Loader /> <Text as="span">Loading...</Text>
