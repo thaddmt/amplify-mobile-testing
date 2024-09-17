@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { View, Flex, Loader, Text } from '@aws-amplify/ui-react';
 import {
   FaceLivenessDetectorCore,
-  mobileCameraType,
 } from '@aws-amplify/ui-react-liveness';
 import { useLiveness } from '../hooks/useLiveness';
 import { SessionIdAlert } from './SessionIdAlert';
@@ -141,10 +140,6 @@ export default function LivenessDefault({ disableStartScreen = false }) {
                   ...(credentialProvider ? { credentialProvider } : {}),
                   endpointOverride:
                     'wss://streaming-rekognition-gamma.us-east-1.amazonaws.com',
-                  mobileCamera:
-                    camera === 'DEFAULT'
-                      ? undefined
-                      : (camera as mobileCameraType),
                 }}
               />
             ) : null}
