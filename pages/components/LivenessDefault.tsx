@@ -138,8 +138,6 @@ export default function LivenessDefault({ disableStartScreen = false }) {
                 onError={onError}
                 config={{
                   ...(credentialProvider ? { credentialProvider } : {}),
-                  endpointOverride:
-                    'wss://streaming-rekognition-gamma.us-east-1.amazonaws.com',
                 }}
               />
             ) : null}
