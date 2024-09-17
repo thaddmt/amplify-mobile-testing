@@ -24,7 +24,7 @@ export function useLiveness(
     async () => {
       const response = await post({
         apiName: 'BYOB',
-        path: `/livenessnolight/create?challengeType=${challengeType}`,
+        path: `/liveness/create?challengeType=${challengeType}`,
         options: {},
       }).response;
       const { body } = response;
