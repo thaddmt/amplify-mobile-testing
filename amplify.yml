@@ -8,7 +8,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - sh setup-codeartifact.sh
         - npm ci
         - npm install @aws-amplify/ui-react@${NPM_TAG}
         - npm install @aws-amplify/ui-react-liveness@${NPM_TAG}
