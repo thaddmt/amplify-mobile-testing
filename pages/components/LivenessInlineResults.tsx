@@ -16,6 +16,9 @@ export default function LivenessInlineResults({ getLivenessResponse, onUserCance
 
     const { isLive, confidenceScore, auditImageBytes } = getLivenessResponse
 
+    var base64string = Buffer.from(
+        new Uint8Array(Object.values(auditImageBytes))
+    ).toString('base64');
     const displayScore = truncateNumber(confidenceScore, 4);
     return (
         <>
@@ -45,7 +48,7 @@ export default function LivenessInlineResults({ getLivenessResponse, onUserCance
                 width="100%"
                 height="auto"
                 radius="md"
-                src={`data:image/jpeg;base64,${auditImageBytes}`}
+                src={`data:image/jpeg;base64,${base64string}`}
                 alt="Audit image"
                 withPlaceholder
             />
